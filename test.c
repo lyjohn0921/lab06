@@ -9,8 +9,8 @@
 #include <time.h>
 #include <unistd.h>
 #define pre "/sys/bus/w1/devices/"
-#define device "28-01131bc32868/"
-#define nm "w1_slave"
+#define device "28-01131bc32868"
+#define nm "/w1_slave"
 #define low "lowest temperature is"
 #define high "highest temperature is"
 #define nows "current temperature is"
@@ -32,6 +32,7 @@ int main(int argc, char **argv)
     time_t star;
     if (argc < 2)
     {
+		d = device;
         printf("pls input you device code");
     }
     else
@@ -40,12 +41,12 @@ int main(int argc, char **argv)
         d = argv[1];
     }
 
-    if ((file = malloc(strlen(pre) + strlen(device) + strlen(nm) + 1)) == NULL)
+    if ((file = malloc(strlen(pre) + strlen(d) + strlen(nm) + 1)) == NULL)
     {
         printf("fail to allocat file name");
         return 1;
     }
-    sprintf(file, "%s%s%s", pre, device, nm);
+    sprintf(file, "%s%s%s", pre, d, nm);
     printf("%s", file);
     fd = open(file, O_RDONLY);
     free(file);
@@ -154,3 +155,4 @@ double gettemp(int fd, char buff[])
     temp = temp / 1000;
     return temp;
 }
+
