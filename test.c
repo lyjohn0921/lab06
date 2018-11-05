@@ -88,9 +88,9 @@ int main(int argc, char **argv)
                 tmp = nexttmp;
                 sent = tmp;
                 printf("\n%5.3f\n", tmp);
-                sprintf(l, "%s%5.3f", "lowest temperature is", tl);
-                sprintf(h, "%s%5.3f", "lowest temperature is", th);
-                sprintf(now, "%s%5.3f", "current temperature is", tmp);
+                sprintf(l, "%s%5.3f", low, tl);
+                sprintf(h, "%s%5.3f", high, th);
+                sprintf(now, "%s%5.3f", nows, tmp);
                 ifttt("https://maker.ifttt.com/trigger/alarm_triggered/with/key/dcZuaJf3oHEAyHhu-55bJE", now, h, l);
             }
             else
